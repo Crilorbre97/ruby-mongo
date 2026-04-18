@@ -5,22 +5,22 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
         @article = create(:article, :draft)
     end
 
-    test "list articles success" do
+    test "List articles - Success" do
         get articles_url
         assert_response :success
     end
 
-    test "show article success" do
+    test "Show article - Success" do
         get article_url(@article.id)
         assert_response :success
     end
 
-    test "show article raise not found exception" do
+    test "Show article - Raise not found exception" do
         get article_url(123)
         assert_response :not_found
     end
 
-    test "create article success" do
+    test "Create article - Success" do
         assert_difference("Article.count", 1) do
             post articles_url, params: {
                 article: {
@@ -33,7 +33,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
         end
     end
 
-    test "create article error validations" do
+    test "Create article - Error validations" do
         assert_difference("Article.count", 0) do
             post articles_url, params: {
                 article: {
@@ -46,7 +46,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
         end
     end
 
-    test "update article success" do
+    test "Update article - Success" do
         patch article_url(@article.id), params: {
             article: {
                 title: "Updated article title"
@@ -57,7 +57,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
         assert_response :success
     end
 
-    test "update article error validations" do
+    test "Update article - Error validations" do
         patch article_url(@article.id), params: {
             article: {
                 title: ""
@@ -68,7 +68,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
         assert_response :unprocessable_entity
     end
 
-    test "update article raise not found exception" do
+    test "Update article - Raise not found exception" do
         patch article_url(123), params: {
             article: {
                 title: "Updated article title"
@@ -77,14 +77,14 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
         assert_response :not_found
     end
 
-    test "destroy article success" do
+    test "Destroy article - Success" do
         assert_difference("Article.count", -1) do
             delete article_url(@article.id)
             assert_response :success
         end
     end
 
-    test "destroy article raise not found exception" do
+    test "Destroy article - Raise not found exception" do
         delete article_url(123)
         assert_response :not_found
     end
