@@ -48,3 +48,7 @@ group :development, :test do
   # Factory models
   gem "factory_bot_rails", "~> 6.5", ">= 6.5.1"
 end
+
+group :test do
+  gem 'simplecov', '~> 0.22.0'
+end
