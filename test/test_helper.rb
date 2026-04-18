@@ -5,7 +5,7 @@ require "rails/test_help"
 module ActiveSupport
   class TestCase
     include FactoryBot::Syntax::Methods
-  
+
     setup do
       Mongoid.purge!
     end

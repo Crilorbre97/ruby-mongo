@@ -1,8 +1,8 @@
 module DocumentNotFound
     extend ActiveSupport::Concern
-    
+
     included do
-        rescue_from Mongoid::Errors::DocumentNotFound, :with => :error_render_method
+        rescue_from Mongoid::Errors::DocumentNotFound, with: :error_render_method
 
         protected
         def error_render_method(exception)

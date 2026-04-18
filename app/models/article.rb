@@ -13,7 +13,7 @@ class Article
   before_save :set_published_at
 
   private
-  
+
   def set_published_at
     return unless published
 

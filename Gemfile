@@ -25,7 +25,7 @@ gem "kamal", require: false
 gem "thruster", require: false
 
 # Mongoid
-gem 'mongoid', '~> 9.0', '>= 9.0.10'
+gem "mongoid", "~> 9.0", ">= 9.0.10"
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
 # gem "rack-cors"
 
@@ -43,8 +43,8 @@ group :development, :test do
   gem "rubocop-rails-omakase", require: false
 
   # Enviroments variables
-  gem 'dotenv-rails', '~> 3.2'
+  gem "dotenv-rails", "~> 3.2"
 
   # Factory models
-  gem 'factory_bot_rails', '~> 6.5', '>= 6.5.1'
+  gem "factory_bot_rails", "~> 6.5", ">= 6.5.1"
 end

@@ -2,7 +2,7 @@ FactoryBot.define do
     factory :article do
         title { "Article's title" }
         body { "Article's body" }
-        tags { ["science"] }
+        tags { [ "science" ] }
 
         trait :published do
             published { true }
