@@ -20,7 +20,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
         assert_response :not_found
     end
 
-    test "Create article - Success" do
+    test "Create draft article - Success" do
         assert_difference("Article.count", 1) do
             post articles_url, params: {
                 article: {
@@ -30,6 +30,22 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
             }
             assert_response :success
             assert_equal @controller.instance_variable_get(:@article).valid?, true
+            assert_equal @controller.instance_variable_get(:@article).published_at.present?, false
+        end
+    end
+
+    test "Create published article - Success" do
+        assert_difference("Article.count", 1) do
+            post articles_url, params: {
+                article: {
+                    title: "New title",
+                    body: "Body for article",
+                    published: true
+                }
+            }
+            assert_response :success
+            assert_equal @controller.instance_variable_get(:@article).valid?, true
+            assert_equal @controller.instance_variable_get(:@article).published_at.present?, true
         end
     end
 
