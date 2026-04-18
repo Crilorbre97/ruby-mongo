@@ -297,3 +297,6 @@ test:
         read:
           mode: :primary
         max_pool_size: 1
+        user: <%= ENV['MONGO_DB_USER'] %>
+        password: <%= ENV['MONGO_DB_PASSWORD'] %>
+        auth_source: admin

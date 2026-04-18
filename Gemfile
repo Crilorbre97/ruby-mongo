@@ -44,4 +44,7 @@ group :development, :test do
 
   # Enviroments variables
   gem 'dotenv-rails', '~> 3.2'
+
+  # Factory models
+  gem 'factory_bot_rails', '~> 6.5', '>= 6.5.1'
 end
