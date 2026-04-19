@@ -11,8 +11,8 @@ class FilterArticles
     scoped = filter_by_tag(scoped, params[:tag])
     scoped = filter_by_start_date(scoped, params[:start_date])
     scoped = filter_by_end_date(scoped, params[:end_date])
-
-    sorting(scoped)
+    scoped = sorting(scoped)
+    Pagination.new(scoped, params[:page]).call
   end
 
   private

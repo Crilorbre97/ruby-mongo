@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
     def index
-        @articles = FilterArticles.new().call(filter_articles_params)
+        @articles = FilterArticles.new().call(filter_articles_params.merge(pagination_params))
         render json: @articles
     end
 
@@ -40,6 +40,12 @@ class ArticlesController < ApplicationController
         return {} unless params[:filters].present?
 
         params.require(:filters).permit(:title, :tag, :start_date, :end_date)
+    end
+
+    def pagination_params
+        return { page: "0" } unless params[:page].present?
+
+        params.permit(:page)
     end
 
     def article_params
