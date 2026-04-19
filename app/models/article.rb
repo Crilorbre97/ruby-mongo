@@ -7,6 +7,8 @@ class Article
   field :published_at, type: Date
   field :tags, type: Array
 
+  belongs_to :author
+
   validates :title, presence: true, length: { minimum: 3 }
   validates :body, presence: true, length: { minimum: 10 }
 

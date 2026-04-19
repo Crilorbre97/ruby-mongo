@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   # root "posts#index"
 
   resources :articles, except: [ :new, :edit ]
+  resources :authors, except: [ :new, :edit ]
 end
