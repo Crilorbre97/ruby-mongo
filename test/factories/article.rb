@@ -12,5 +12,7 @@ FactoryBot.define do
         trait :draft do
             published { false }
         end
+
+        association :author
     end
 end

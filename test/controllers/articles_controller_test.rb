@@ -3,6 +3,7 @@ require "test_helper"
 class ArticlesControllerTest < ActionDispatch::IntegrationTest
     def setup
         @article = create(:article, :draft)
+        @author = create(:author)
     end
 
     test "List articles - Success" do
@@ -81,7 +82,8 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
             post articles_url, params: {
                 article: {
                     title: "New title",
-                    body: "Body for article"
+                    body: "Body for article",
+                    author_id: @author.id
                 }
             }
             assert_response :success
@@ -96,7 +98,8 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
                 article: {
                     title: "New title",
                     body: "Body for article",
-                    published: true
+                    published: true,
+                    author_id: @author.id
                 }
             }
             assert_response :success
