@@ -58,7 +58,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
         create(:article, created_at: Date.today - 2.days)
         get articles_url, params: {
             filters: {
-                tag: Date.today.strftime("%d/%m/%Y")
+                end_date: Date.today.strftime("%d/%m/%Y")
             }
         }
         articles = @controller.instance_variable_get(:@articles)

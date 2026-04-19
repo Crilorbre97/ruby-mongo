@@ -48,7 +48,7 @@ class FilterArticles
     return scoped unless end_date.present?
 
     begin
-      date = Date.strptime(start_date, "%d/%m/%Y")
+      date = Date.strptime(end_date, "%d/%m/%Y")
       scoped.where(created_at: { '$lte': date })
     rescue
       scoped
