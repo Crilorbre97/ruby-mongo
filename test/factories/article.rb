@@ -6,7 +6,7 @@ FactoryBot.define do
 
         trait :published do
             published { true }
-            published_at { Date.current }
+            published_at { Date.today }
         end
 
         trait :draft do

@@ -10,6 +10,62 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
         assert_response :success
     end
 
+    test "List articles filter by title - Success" do
+        create(:article, title: "Civil war")
+        create(:article, title: "Inversions: Bitcoin")
+        create(:article, title: "Inversions: SP500")
+        get articles_url, params: {
+            filters: {
+                title: "inversion"
+            }
+        }
+        articles = @controller.instance_variable_get(:@articles)
+        assert_equal articles.all? { |art| art.title.downcase.include? "inversion" }, true
+        assert_response :success
+    end
+
+    test "List articles filter by tag - Success" do
+        create(:article, tags: [ "science", "tech" ])
+        create(:article, tags: [ "tech" ])
+        create(:article, tags: [ "health" ])
+        get articles_url, params: {
+            filters: {
+                tag: "tech"
+            }
+        }
+        articles = @controller.instance_variable_get(:@articles)
+        assert_equal articles.all? { |art| art.tags.include? "tech" }, true
+        assert_response :success
+    end
+
+    test "List articles filter by start date - Success" do
+        create(:article, created_at: Date.today + 1.days)
+        create(:article, created_at: Date.today + 5.days)
+        create(:article, created_at: Date.today - 2.days)
+        get articles_url, params: {
+            filters: {
+                start_date: Date.today.strftime("%d/%m/%Y")
+            }
+        }
+        articles = @controller.instance_variable_get(:@articles)
+        assert_equal articles.all? { |art| art.created_at >= Date.today }, true
+        assert_response :success
+    end
+
+    test "List articles filter by end date - Success" do
+        create(:article, created_at: Date.today + 1.days)
+        create(:article, created_at: Date.today + 5.days)
+        create(:article, created_at: Date.today - 2.days)
+        get articles_url, params: {
+            filters: {
+                tag: Date.today.strftime("%d/%m/%Y")
+            }
+        }
+        articles = @controller.instance_variable_get(:@articles)
+        assert_equal articles.all? { |art| art.created_at <= Date.today }, true
+        assert_response :success
+    end
+
     test "Show article - Success" do
         get article_url(@article.id)
         assert_response :success
