@@ -19,7 +19,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
                 title: "inversion"
             }
         }
-        articles = @controller.instance_variable_get(:@articles)
+        articles = @controller.instance_variable_get(:@articles).dig(:data)
         assert_equal articles.all? { |art| art.title.downcase.include? "inversion" }, true
         assert_response :success
     end
@@ -33,7 +33,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
                 tag: "tech"
             }
         }
-        articles = @controller.instance_variable_get(:@articles)
+        articles = @controller.instance_variable_get(:@articles).dig(:data)
         assert_equal articles.all? { |art| art.tags.include? "tech" }, true
         assert_response :success
     end
@@ -47,7 +47,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
                 start_date: Date.today.strftime("%d/%m/%Y")
             }
         }
-        articles = @controller.instance_variable_get(:@articles)
+        articles = @controller.instance_variable_get(:@articles).dig(:data)
         assert_equal articles.all? { |art| art.created_at >= Date.today }, true
         assert_response :success
     end
@@ -61,7 +61,7 @@ class ArticlesControllerTest < ActionDispatch::IntegrationTest
                 end_date: Date.today.strftime("%d/%m/%Y")
             }
         }
-        articles = @controller.instance_variable_get(:@articles)
+        articles = @controller.instance_variable_get(:@articles).dig(:data)
         assert_equal articles.all? { |art| art.created_at <= Date.today }, true
         assert_response :success
     end
