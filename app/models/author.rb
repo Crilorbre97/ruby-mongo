@@ -19,6 +19,8 @@ class Author
   validates :city, presence: true
   validates :birth_date, presence: true
 
+  index({ email: 1 }, { name: "email_index", unique: true })
+
   before_save :downcase_attributes
 
   private

@@ -22,3 +22,17 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+## Usefull commands
+
+* Apply index
+
+```
+rails db:mongoid:create_indexes
+```
+
+* Open coverage file
+
+```
+xdg-open coverage/index.html
+```
