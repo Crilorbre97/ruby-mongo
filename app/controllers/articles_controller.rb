@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
     def index
-        @articles = Article.all
+        @articles = FilterArticles.new().call(filter_articles_params)
         render json: @articles
     end
 
@@ -35,6 +35,12 @@ class ArticlesController < ApplicationController
     end
 
     private
+
+    def filter_articles_params
+        return {} unless params[:filters].present?
+
+        params.require(:filters).permit(:title)
+    end
 
     def article_params
         params.require(:article).permit(:title, :body, :published, tags: [])
