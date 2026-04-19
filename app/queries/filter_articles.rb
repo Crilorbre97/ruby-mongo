@@ -8,6 +8,7 @@ class FilterArticles
   def call(params = {})
     scoped = articles
     scoped = filter_by_title(scoped, params[:title])
+    scoped = filter_by_tag(scoped, params[:tag])
 
     sorting(scoped)
   end
@@ -22,6 +23,12 @@ class FilterArticles
     return scoped unless title.present?
 
     scoped.where(title: /#{title}/i)
+  end
+
+  def filter_by_tag(scoped, tag)
+    return scoped unless tag.present?
+
+    scoped.in(tags: tag)
   end
 
   def sorting(scoped)

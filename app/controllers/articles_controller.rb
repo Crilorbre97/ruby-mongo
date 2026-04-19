@@ -39,7 +39,7 @@ class ArticlesController < ApplicationController
     def filter_articles_params
         return {} unless params[:filters].present?
 
-        params.require(:filters).permit(:title)
+        params.require(:filters).permit(:title, :tag)
     end
 
     def article_params
