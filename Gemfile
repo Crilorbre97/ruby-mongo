@@ -25,7 +25,7 @@ gem "kamal", require: false
 gem "thruster", require: false
 
 # Mongoid
-gem "mongoid", "~> 9.0", ">= 9.0.10"
+gem "mongoid", "~> 9.0"
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin Ajax possible
 # gem "rack-cors"
 
